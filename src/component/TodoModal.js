@@ -3,13 +3,18 @@ import styles from "../styles/modules/modal.module.scss";
 import { MdOutlineClose } from "react-icons/md";
 import Button from "./Button";
 
-function TodoModal({ openModal, setModalOpen }) {
+function TodoModal({ modalOpen, setModalOpen }) {
   return (
     <div>
-      {openModal && (
+      {modalOpen && (
         <div className={styles.wrapper}>
           <div className={styles.container}>
-            <div className={styles.closeButton}>
+            <div 
+              className={styles.closeButton} 
+              onClick={()=>setModalOpen(false)}
+              onKeyDown={()=>setModalOpen(false)}
+              tabIndex={0}
+              role='button'>
               <MdOutlineClose />
             </div>
             <form className={styles.form}>
@@ -31,14 +36,19 @@ function TodoModal({ openModal, setModalOpen }) {
                 <Button type="submit" variant="primary">
                   Add Task
                 </Button>
-                <Button type="button" variant="secondary">
+                <Button 
+                  type="button" 
+                  variant="secondary" 
+                  onClick={()=>setModalOpen(false)}
+                  onKeyDown={()=>setModalOpen(false)}>
                   Cancel
                 </Button>
               </div>
             </form>
           </div>
         </div>
-      )}
+      )
+      }
     </div>
   );
 }
